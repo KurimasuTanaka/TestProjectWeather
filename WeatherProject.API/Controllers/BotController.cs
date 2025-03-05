@@ -8,7 +8,7 @@ namespace WeatherProject.API.Controllers
     [ApiController]
     public class BotController(IMessagesSender _messagesSender, ILogger<BotController> _logger) : ControllerBase
     {
-        [HttpPost("sentWeatherToAll")]
+        [HttpPost("sentWeatherToAll")] //Sending weather data to all users. Information about chosen city is sent 
         public async Task<IActionResult> SentWeatherToAll()
         {
             _logger.LogInformation("Sending weather data to all users without a city...");
@@ -21,7 +21,7 @@ namespace WeatherProject.API.Controllers
 
         }
 
-        [HttpPost("sentWeatherToAll/{city}")]
+        [HttpPost("sentWeatherToAll/{city}")] //Sending weather data to all users. Information about specified city is sent 
         public async Task<IActionResult> SentWeatherToAll(string city)
         {
             _logger.LogInformation($"Sending weather data about a {city} to all users ...");
@@ -33,7 +33,7 @@ namespace WeatherProject.API.Controllers
             return Ok(message);
         }
 
-        [HttpPost("sentWeather/{userId}")]
+        [HttpPost("sentWeather/{userId}")] //Sending weather data about chosen city to a user 
         public async Task<IActionResult> SentWeather(long userId)
         {
             _logger.LogInformation($"Sending weather data to user with id {userId} ...");
@@ -44,7 +44,7 @@ namespace WeatherProject.API.Controllers
 
             return Ok(message);
         }
-        [HttpPost("sentWeather/{userId}/{city}")]
+        [HttpPost("sentWeather/{userId}/{city}")]  //Sending weather data about specified city to a user 
         public async Task<IActionResult> SentWeather(long userId, string city)
         {
             _logger.LogInformation($"Sending weather data about a {city} to user with id {userId} ...");

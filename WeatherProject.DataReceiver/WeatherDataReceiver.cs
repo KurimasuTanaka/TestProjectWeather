@@ -9,6 +9,7 @@ namespace WeatherProject.WeatherAPI;
 
 public class WeatherDataReceiver(IConfiguration _configuration) : IWeatherDataReceiver
 {
+    //Method for getting weather data from the API
     public async Task<WeatherData?> GetWeatherData(string city)
     {
         HttpClient client = new HttpClient();

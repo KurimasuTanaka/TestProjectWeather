@@ -12,7 +12,7 @@ namespace WeatherProject.API.Controllers
         IUserRepository _userRepository,
         ILogger<UserInfoController> _logger) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet] //Getting information about a user with a requests history
         public async Task<IActionResult> Get(long userId)
         {
             _logger.LogInformation($"Getting user info about a user with id {userId} ...");

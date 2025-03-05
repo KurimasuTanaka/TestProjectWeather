@@ -37,6 +37,7 @@ public class UpdateHandler(
         await OnMessage(update.Message!);
     }
 
+    //Method for handling messages
     public async Task OnMessage(Message message)
     {
         if (message.Text is not { } messageText)
@@ -53,6 +54,7 @@ public class UpdateHandler(
 
     }
 
+    //Method that returns a button with the city that the user has chosen. If the city isn't chosen, the button is NULL
     private async Task<KeyboardButton?> GetCityWeatherButton(long userId)
     {
         KeyboardButton? cityButton;
@@ -69,7 +71,7 @@ public class UpdateHandler(
         return cityButton;
     }
 
-
+    //Method for handling messages with unknown commands
     private async Task UnknownCommandReceiver(Message message)
     {
         _logger.LogInformation("Unknown command was received! Sending the unknown command message...");
@@ -79,7 +81,7 @@ public class UpdateHandler(
         _logger.LogInformation("Unknown command message was sent successfully!");
     }
 
-
+    //Method for sending the starting message
     private async Task SentStartingMessage(Message message)
     {
         _logger.LogInformation("Starting message was received! Sending the starting message...");
@@ -94,6 +96,8 @@ public class UpdateHandler(
         _logger.LogInformation("Starting message was sent successfully!");
     }
 
+    //Method for choosing a city. If user wan't in DB then the new User instance is created. 
+    //If the user was in DB then the city is updated
     private async Task ChooseCity(Message message)
     {
         _logger.LogInformation("City choosing message was received! Processing...");
@@ -124,6 +128,8 @@ public class UpdateHandler(
     }
 
 
+    //Method for sending weather data
+    //Information about all requests is saved to the database
     private async Task SentWeatherData(Message message)
     {
         _logger.LogInformation("Weather data request was received! Processing...");
